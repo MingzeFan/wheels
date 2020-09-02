@@ -13,12 +13,10 @@
   }
   //获取transform的兼容写法
   function getTransform () {
-    var transform = '',
-    divStyle = document.createElement('div').style,
-    transformList = ['transform', 'webkitTransform', 'mozTransform', 'OTransform', 'msTransform'],
-    i = 0,
-    length = transformList.length
-    for (; i < length; i++) {
+    var transform = ''
+    var divStyle = document.createElement('div').style
+    var transformList = ['transform', 'webkitTransform', 'mozTransform', 'OTransform', 'msTransform']
+    for (let i = 0; i < transformList.length; i++) {
       if (transformList[i] in divStyle) {
         return transform = transformList[i]
       }
@@ -36,7 +34,6 @@
       var self = this
       self.elem.addEventListener('mousedown', start, false)
       function start (event) {
-        // console.log(this)
         self.startX = event.pageX
         self.startY = event.pageY
         var pos = self.getTargetPos()
@@ -74,9 +71,7 @@
         if (transformValue === 'none') {
           this.elem.style['position'] = 'translate(0, 0)'
         } else {
-          // console.log(transformValue)
           var temp = transformValue.match(/-?\d+/g)
-          
           pos = {
             x: parseInt(temp[4].trim()),
             y: parseInt(temp[5].trim())
@@ -87,8 +82,8 @@
           this.elem.style['position'] = 'relative'
         } else {
           pos = {
-            x: parseInt(this.getStyle('left') ? this.getStyle('left') : 0),
-            y: parseInt(this.getStyle('top') ? this.getStyle('top') : 0),
+            x: this.getStyle('left') ? this.getStyle('left') : 0,
+            y: this.getStyle('top') ? this.getStyle('top') : 0,
           }
         }
       }
